@@ -1,4 +1,4 @@
-package com.HL.actions
+package org.thezorg.actions
 {
 	import org.flixel.*;
 	
