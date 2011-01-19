@@ -2,6 +2,12 @@ package org.thezorg.actions
 {
 	import org.flixel.*;
 	
+	/**
+	 * Robot functions manipulate and transform an object's variable according
+	 * to a certain function over a certain period of time. 
+	 * @author Fab
+	 * 
+	 */
 	public class ActionRobotFunction extends FlxObject implements IActionEvent
 	{
 		private var _listener:IActionListener;
@@ -13,6 +19,15 @@ package org.thezorg.actions
 		protected var duration:Number;
 		protected var currTime:Number;
 		
+		/**
+		 * Instantiates the basic variables necessary for robot functions
+		 * @param Reference	The object whose variable will be manipulated
+		 * @param Variable	The name of the variable to manipulate
+		 * @param EndValue	The value of the variable at the end of the function
+		 * @param Duration	The time period for which the variable will be manipulated
+		 * @param Listener	An <code>IActionListener</code> listening to the end of the function
+		 * 
+		 */
 		public function ActionRobotFunction(Reference:Object, Variable:String, EndValue:Number, Duration:Number, Listener:IActionListener = null)
 		{
 			super();
@@ -30,6 +45,11 @@ package org.thezorg.actions
 			currTime = 0;
 		}
 		
+		/**
+		 * Performs default update functions common to all robot functions. <strong> Do
+		 * not override this function</strong>, override <code>updateFunction()</code> instead. 
+		 * 
+		 */
 		override public function update():void
 		{
 			currTime += FlxG.elapsed;
@@ -42,14 +62,23 @@ package org.thezorg.actions
 			else updateFunction();
 		}
 		
+		/**
+		 * This is where the function does its custom updating. 
+		 * 
+		 */
 		public function updateFunction():void
 		{
 			
 		}
 		
-		override public function reset(X:Number=0, Y:Number=0):void
+		/**
+		 * Resets and activates the function. The starting value will be replaced
+		 * by the current value of the reference variable.
+		 * 
+		 */
+		override public function reset():void
 		{
-			super.reset();
+			super.reset(0,0);
 			startValue = reference[variable];
 			currTime = 0;
 			active = true;

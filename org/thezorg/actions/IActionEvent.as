@@ -1,6 +1,13 @@
 package org.thezorg.actions
 {
 	
+	/**
+	 * Defines functions common to <code>ActionBehavior</code>,
+	 * <code>ActionList</code>, <code>ActionQueue</code> and
+	 * <code>ActionRobotFunction</code>.
+	 * @author Fab
+	 * 
+	 */
 	public interface IActionEvent
 	{
 		function update():void;

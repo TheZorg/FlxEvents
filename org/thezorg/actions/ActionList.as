@@ -2,6 +2,13 @@ package org.thezorg.actions
 {
 	import org.flixel.*;
 	
+	/**
+	 * <code>ActionList</code>s execute all Actions at once. It can contain any object
+	 * implementing <code>IActionEvent</code>, including other <code>ActionList</code>s,
+	 * as well as <code>ActionCommand</code>s.
+	 * @author Fab
+	 * 
+	 */
 	public class ActionList extends FlxGroup implements IActionEvent, IActionListener
 	{
 		private var _listener:IActionListener;
@@ -12,6 +19,13 @@ package org.thezorg.actions
 			listener = Listener;
 		}
 		
+		/**
+		 * Add an Action to the List. 
+		 * @param Object	The Action to add
+		 * @param ListenToCallback	Whether or not the list should <code>callback()</code> when this action finishes
+		 * @return 
+		 * 
+		 */
 		public function addAction(Object:FlxObject, ListenToCallback:Boolean=false):FlxObject
 		{
 			if(Object is IActionEvent && ListenToCallback)
@@ -40,7 +54,11 @@ package org.thezorg.actions
 			}
 		}
 		
-		override public function reset(X:Number = 0, Y:Number = 0):void
+		/**
+		 * Resets and activates the list. 
+		 * 
+		 */
+		override public function reset():void
 		{
 			super.reset(0,0);
 			var i:uint = 0;

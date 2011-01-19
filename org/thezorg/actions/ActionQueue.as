@@ -3,6 +3,13 @@ package org.thezorg.actions
 	import org.flixel.FlxGroup;
 	import org.flixel.FlxObject;
 	
+	/**
+	 * <code>ActionQueue</code>s execute Actions in a FIFO manner. It can contain any object
+	 * implementing <code>IActionEvent</code>, including other <code>ActionQueue</code>s,
+	 * as well as <code>ActionCommand</code>s. 
+	 * @author Fab
+	 * 
+	 */
 	public class ActionQueue extends FlxGroup implements IActionListener, IActionEvent
 	{
 		private var _listener:IActionListener;
@@ -36,6 +43,11 @@ package org.thezorg.actions
 			return null;
 		}
 		
+		/**
+		 * If the queue is empty, it will <code>callback()</code> the listener here then
+		 * deactivate itself.
+		 * 
+		 */		
 		override public function update():void
 		{
 			var o:FlxObject = getFirstActive();
@@ -58,12 +70,21 @@ package org.thezorg.actions
 			}
 		}
 		
+		/**
+		 * By default kills the Event which triggered the <code>callback()</code>.
+		 * @param event
+		 * 
+		 */
 		public function callback(event:IActionEvent):void
 		{
 			event.kill();
 		}
 		
-		override public function reset(X:Number = 0, Y:Number = 0):void
+		/**
+		 * Resets and activates the queue. 
+		 * 
+		 */		
+		override public function reset():void
 		{
 			super.reset(0,0);
 			var i:uint = 0;
